@@ -8,14 +8,21 @@ trial to see if i could parse a json file.
 import json
 
 horsedata = []
-for line in open('twoline-horsepro.json', 'r'):
+for line in open('./data/5line-horsepro.json', 'r'):
     horsedata.append(json.loads(line))
 
 print(type(horsedata))
 print()
 print("lenght of the horsedate file is", len(horsedata))
-print("type of the fisrt line is", type(horsedata[0]))
+for i in range(len(horsedata)):
+    print(f"type of the {i} th line is", type(horsedata[i]))
 
-for key, value in horsedata[0].items():
-    print(f"Key: {key} Value {value}")
-    print("------------------")
+###for i in range(len(horsedata)):
+# #for key in horsedata[i].items():
+#        print(horsedata[i]['mc'])
+#print(horsedata[0])
+line = horsedata[0]
+print(horsedata[0]['mc'][0]['id'])
+print(len(horsedata[0]['mc']))
+print(len(horsedata[0]['mc'][0]))
+print(horsedata[0]['mc'][0]['marketDefinition'])
