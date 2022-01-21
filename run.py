@@ -2,7 +2,7 @@ board = [[],[],[],[],[],[],[]]
 number_turns = 2
 keep_going_eileen = True
 col = 10
-
+player_piece = "x"
 underl = "_"
 
 
@@ -38,6 +38,7 @@ def check_column_full(col):
 def take_input_from_player():
     global number_turns
     global col 
+    global player_piece
     col = 10
     going = True
     if number_turns % 2 == 0:
@@ -51,7 +52,7 @@ def take_input_from_player():
         try:
             col = int(input(f"{player} pick a column to drop an {player_piece} : "))
         except ValueError:
-            print("Enetr a number in range 0-6")
+            print("Enter a NUMBER in range 0-6")
 
 
 
@@ -100,12 +101,14 @@ def declare_draw():
     exit()
 
 
-
+def check_win(piece):
+    print("in checkwin piece is ", piece)
 
 while keep_going_eileen:
     take_input_from_player()
     draw_board(board)
     check_draw(board)
+    check_win(player_piece)
     # check_for_quit()
 
 
