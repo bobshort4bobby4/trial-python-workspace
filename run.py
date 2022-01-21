@@ -1,7 +1,10 @@
 board = [[],[],[],[],[],[],[]]
 number_turns = 2
 keep_going_eileen = True
+col = 10
+
 underl = "_"
+
 
 for i in range(6): # fill board variable
     for j in range(7):
@@ -21,6 +24,7 @@ def draw_board(board):
 
 
 def check_column_full(col):
+   
     temp= board[0][col]
     print(temp)
     
@@ -33,6 +37,9 @@ def check_column_full(col):
 
 def take_input_from_player():
     global number_turns
+    global col 
+    col = 10
+    going = True
     if number_turns % 2 == 0:
         player_piece = "x"
         player = "Player 1 "
@@ -40,19 +47,26 @@ def take_input_from_player():
         player = "Player 2"
         player_piece = "0"
 
-    while True:
+    while (col < 0) or (col > 6):
         try:
-            col = int(input(f"{player} pick a column to drop an {player_piece} :"))
-            break
+            col = int(input(f"{player} pick a column to drop an {player_piece} : "))
         except ValueError:
             print("Enetr a number in range 0-6")
 
 
-    if col in range(0, 7):
-            print("Valid column thanks very much you're very kind")
-    else:
-            print("NOT IN RANGE")
-            take_input_from_player()
+
+
+    # while going:
+    #     if col in range(0, 7):
+    #         print("Valid column thanks very much you're very kind")
+    #         going = False
+    #     else:
+    #         print("NOT IN RANGE")
+    #         try:
+    #             col = int(input(f"{player} pick a column to drop an {player_piece} :"))
+    #         except ValueError:
+    #             print("Enetr a NUMBER in range 0-6")
+        
             
     choice = check_column_full(col)
     for row in range(5, -1, -1):
@@ -84,11 +98,13 @@ def check_draw(board):
 def declare_draw():
     print("Neither of you were good enough to win") 
     exit()
-             
+
+
+
+
 while keep_going_eileen:
     take_input_from_player()
     draw_board(board)
-    print(board.count("_"))
     check_draw(board)
     # check_for_quit()
 
