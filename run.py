@@ -102,7 +102,48 @@ def declare_draw():
 
 
 def check_win(piece):
-    print("in checkwin piece is ", piece)
+    print("in checkwin  function piece is ", piece)
+    # check rows for line of 4
+    temp  = 0
+    for i in range(6): 
+        for j in range(4):
+            if board[i][j] == piece and board[i][j+1] == piece and board[i][j+2] == piece and board[i][j+3] == piece:
+                print(f"{piece} has won!")
+                exit()
+
+    # check column for line of 4
+
+    for i in range(7):
+        for j in range(3):
+            if board[j][i] == piece and board[j + 1][i] == piece and board[j + 2][i] == piece and board[j + 3][i] == piece:
+                print(f"{piece} has won!")
+                exit()
+
+    # check diagonals for line of 4
+    """
+    30 21 12 03                             i in range 3,5          30 21 12 03  0123 0123  
+    40 31 22 13 04                                                  31 22 13 04  0123 1234
+    50 41 32 23 14 05                                               32 23 14 05  0123 2345
+                                                                    33 24 15 06  0123 3456
+    31 22 13 04
+    41 32 23 14 05
+    51 42 33 24 15 06                       row 3 is the first one capable of having a line of 4  so start i at 3 and add 0ne each iter in inner loop
+                                            j  in range 0, 6
+    32 23 14 05
+    42 33 24 15 06
+    52 43 34 25 16
+
+    33 24 15 06
+    43 34 25 16
+    53 44 35 26
+    """
+    for i in range(4):
+        for j in range(3):
+            if board[j][i] == piece and board[j+1][i+1] == piece and board[j+2][i+2] == piece  and board[j+3][i+3] == piece:
+                print(f"{piece} has won!")
+                exit()
+
+
 
 while keep_going_eileen:
     take_input_from_player()
