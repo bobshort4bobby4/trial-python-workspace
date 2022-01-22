@@ -7,6 +7,15 @@ underl = "_"
 choice = []
 temp1 =True
 
+class Error(Exception):
+    """Base class for other exceptions"""
+    pass
+
+
+class ColumnFullError(Error):
+    """Raised when the input value is too small"""
+    pass
+
 
 for i in range(6): # fill board variable
     for j in range(7):
@@ -58,11 +67,15 @@ def take_input_from_player():
     while (col < 0) or (col > 6) :
         try:
             col = int(input(f"{player} pick a column to drop an {player_piece} : "))
+            if board[0][col] != "_":
+                raise ColumnFullError
         except ValueError:
             print("Enter a NUMBER in range 0-6")
+        except ColumnFullError:
+            print("column full")
     
-    if board[0][col] != "_":
-       raise Exception("column full")
+    # if board[0][col] != "_":
+    #    raise Exception("column full")
         
         
         
