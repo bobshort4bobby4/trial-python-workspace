@@ -7,14 +7,6 @@ underl = "_"
 choice = []
 temp1 =True
 
-class Error(Exception):
-    """Base class for other exceptions"""
-    pass
-
-
-class ColumnFullError(Error):
-    """Raised when the input value is too small"""
-    pass
 
 
 for i in range(6): # fill board variable
